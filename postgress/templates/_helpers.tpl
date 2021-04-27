@@ -36,10 +36,7 @@ Common labels
 {{- define "postgress.labels" -}}
 helm.sh/chart: {{ include "postgress.chart" . }}
 {{ include "postgress.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+app: demo-voting-app
 {{- end }}
 
 {{/*

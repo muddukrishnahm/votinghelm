@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name:  {{ include "postgress.fullname" . }}
   labels:
-    {{- include postgress.labels | nindent 4 }}
+    {{- include "postgress.labels" | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- postgress.selectorLabels | nindent 6 }}
+      {{- include "postgress.selectorLabels" | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- postgress.selectorLabels | nindent 8 }}
+        {{- include "postgress.selectorLabels" | nindent 8 }}
     spec:
-      containers:
+      containers: 
       - name: postgres-pod
         image: {{ .Values.image.repository}}:{{ .Values.image.tag }}
         ports:
